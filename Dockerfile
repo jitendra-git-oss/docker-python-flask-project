@@ -1,9 +1,11 @@
-FROM python:3.6
-MAINTAINER veera "veera.narni232@gmail.com"
-COPY . /app
+FROM python:3.12.15-slim
+
 WORKDIR /app
-RUN pip install -r requirements.txt
-EXPOSE 5000
-#ENTRYPOINT ["python"]
-#CMD ["app.py"]
+
+COPY requirements.txt .
+
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY . .
+
 CMD ["python", "app.py"]
